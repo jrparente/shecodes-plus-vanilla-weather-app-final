@@ -42,9 +42,56 @@ let month = months[today.getMonth()];
 let updateDate = document.querySelector("#updated-date");
 updateDate.innerHTML = `${day}, ${month} ${date} ${year}, ${hour}:${minutes}`;
 
+// Get forecast
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function getForecast(coordinates) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric&exclude=hourly,minutely`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
+
+  forecast.forEach(function (day, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+  <div class="col">
+            <div class="WeatherForecastPreview">
+              <div class="forecast-time">${formatDay(
+                day.dt
+              )}</div><img src="http://openweathermap.org/img/wn/${
+          day.weather[0].icon
+        }@2x.png" alt="icon"
+                class="icon-" id="icon" />
+              <div class="forecast-temperature"><span class="forecast-temperature-max">${Math.round(
+                day.temp.max
+              )}</span>º <span
+                  class="forecast-temperature-min">${Math.round(
+                    day.temp.min
+                  )}</span>º</div>
+            </div>
+          </div>
+  `;
+    }
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // Get temperature in city
 function getWeather(response) {
-  console.log(response.data);
   let cityHTML = document.querySelector("#titleCity");
   cityHTML.innerHTML = response.data.name;
   let cityTemp = document.querySelector("#todays-temp");
@@ -100,16 +147,17 @@ function getWeather(response) {
     description.innerHTML = "foggy";
     advice.innerHTML = "It's not a good day to play outside";
   }
+  getForecast(response.data.coord);
 }
 
 function getCity(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input");
+  let apiKey = "f81d9102f55557fbaab58670b27ef077";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=${apiKey}`;
   axios.get(url).then(getWeather);
 }
 
-let apiKey = "f81d9102f55557fbaab58670b27ef077";
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", getCity);
 
