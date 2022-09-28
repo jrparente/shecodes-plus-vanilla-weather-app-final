@@ -2,117 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS -->
-    <link rel="stylesheet" href="src/style.css" />
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-    <!--FontAwesome-->
-    <script src="https://kit.fontawesome.com/42ad39df4b.js" crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
-    <!-- SEO -->
-    <title>Weather App</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <!--FontAwesome-->
+  <script src="https://kit.fontawesome.com/42ad39df4b.js" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="src/style.css" />
+  <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- SEO -->
+  <title>Weather App</title>
 </head>
 
 <body>
-    <div class="app">
-        <div class="container">
-            <div class="weather">
+  <div class="app">
+    <div class="container">
+      <div class="weather">
 
-                <h1>The weather is looking <span class="highlight-text">fine</span>!</h1>
-                <h2>Here is a suggestion for you</h2>
-                <form>
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <input type="search" placeholder="Search for a City" class="form-control search-input">
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="submit" class="btn btn-primary w-100" value="Search">
-                        </div>
-                    </div>
-                </form>
-
-                <div class="weather-today">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span class="city">Lisbon</span>
-                            <ul>
-                                <li>Tuesday 27 September at 14:47</li>
-                                <li>Humidity: 63%, Wind: 11.62km/h</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="d-flex justify-content-end">
-                                <span class="temperature">22</span>
-                                <span class="unit">°C</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="WeatherForecast row">
-                    <div class="col">
-                        <div class="WeatherForecastPreview">
-                            <div class="forecast-time">Tue</div><i class="fa-solid fa-cloud"></i>
-                            <div class="forecast-temperature"><span class="forecast-temperature-max">22°</span><span
-                                    class="forecast-temperature-min">16°</span></div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="WeatherForecastPreview">
-                            <div class="forecast-time">Wed</div><i class="fa-solid fa-sun"></i>
-                            <div class="forecast-temperature"><span class="forecast-temperature-max">22°</span><span
-                                    class="forecast-temperature-min">17°</span></div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="WeatherForecastPreview">
-                            <div class="forecast-time">Thu</div><i class="fa-solid fa-umbrella"></i>
-                            <div class="forecast-temperature"><span class="forecast-temperature-max">21°</span><span
-                                    class="forecast-temperature-min">17°</span></div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="WeatherForecastPreview">
-                            <div class="forecast-time">Fri</div><i class="fa-solid fa-sun"></i>
-                            <div class="forecast-temperature"><span class="forecast-temperature-max">22°</span><span
-                                    class="forecast-temperature-min">16°</span></div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="WeatherForecastPreview">
-                            <div class="forecast-time">Sat</div><i class="fa-solid fa-cloud-sun"></i>
-                            <div class="forecast-temperature"><span class="forecast-temperature-max">24°</span><span
-                                    class="forecast-temperature-min">16°</span></div>
-                        </div>
-                    </div>
-                </div>
-                <footer>This project was coded by <a href="https://www.joanaramosparente.pt/" target="_blank"
-                        rel="noopener noreferrer">Joana Parente</a> and is <a
-                        href="https://github.com/jrparente/vanilla-weather-app" target="_blank"
-                        rel="noopener noreferrer">open-sourced on GitHub</a> and <a
-                        href="https://joanas-weather-app.netlify.app/" target="_blank" rel="noopener noreferrer">hosted
-                        on Netlify</a></footer>
+        <h1>The weather is looking <span class="highlight-text">fine</span>!</h1>
+        <h2 hidden>Here is a suggestion for you</h2>
+        <form id="search-form">
+          <div class="row">
+            <div class="col-sm-9">
+              <input type="search" placeholder="Search for a City" class="form-control search-input" id="city-input">
             </div>
+            <div class="col-sm-3">
+              <input type="submit" class="btn btn-primary w-100" value="Search">
+            </div>
+          </div>
+        </form>
+
+        <div class="weather-today">
+          <div class="row">
+            <div class="col-sm-6">
+              <span class="city" id="titleCity">Lisbon</span>
+              <ul>
+                <li id="updated-date">Tuesday 27 September at 14:47</li>
+                <li>Humidity: <strong><span class="humidity">63</span>%</strong>, Wind: <strong><span
+                      class="wind-speed">11.62</span>km/h</strong></li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+
+
+              <div class="d-flex justify-content-end">
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon" class="icon-today" id="icon" />
+                <span class=" temperature" id="todays-temp">22</span>
+                <span class="unit">
+                  <span class="celsiusfar-a" id="celsius-link">°C</span>|<a href="#" class="celsiusfar"
+                    id="fahrenheit-link">°F</a></span>
+              </div>
+
+            </div>
+          </div>
         </div>
 
-
-
+        <div class="WeatherForecast row" hidden>
+          <div class="col">
+            <div class="WeatherForecastPreview">
+              <div class="forecast-time">Tue</div><i class="fa-solid fa-cloud"></i>
+              <div class="forecast-temperature"><span class="forecast-temperature-max">22°</span><span
+                  class="forecast-temperature-min">16°</span></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="WeatherForecastPreview">
+              <div class="forecast-time">Wed</div><i class="fa-solid fa-sun"></i>
+              <div class="forecast-temperature"><span class="forecast-temperature-max">22°</span><span
+                  class="forecast-temperature-min">17°</span></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="WeatherForecastPreview">
+              <div class="forecast-time">Thu</div><i class="fa-solid fa-umbrella"></i>
+              <div class="forecast-temperature"><span class="forecast-temperature-max">21°</span><span
+                  class="forecast-temperature-min">17°</span></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="WeatherForecastPreview">
+              <div class="forecast-time">Fri</div><i class="fa-solid fa-sun"></i>
+              <div class="forecast-temperature"><span class="forecast-temperature-max">22°</span><span
+                  class="forecast-temperature-min">16°</span></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="WeatherForecastPreview">
+              <div class="forecast-time">Sat</div><i class="fa-solid fa-cloud-sun"></i>
+              <div class="forecast-temperature"><span class="forecast-temperature-max">24°</span><span
+                  class="forecast-temperature-min">16°</span></div>
+            </div>
+          </div>
+        </div>
+        <footer>This project was coded by <a href="https://www.joanaramosparente.pt/" target="_blank"
+            rel="noopener noreferrer">Joana Parente</a> and is <a
+            href="https://github.com/jrparente/vanilla-weather-app" target="_blank"
+            rel="noopener noreferrer">open-sourced on GitHub</a> and <a href="https://joanas-weather-app.netlify.app/"
+            target="_blank" rel="noopener noreferrer">hosted
+            on Netlify</a></footer>
+      </div>
     </div>
 
 
-    <script src="src/app.js"></script>
+
+  </div>
+
+
+  <script src="src/app.js"></script>
 </body>
 
 </html>
